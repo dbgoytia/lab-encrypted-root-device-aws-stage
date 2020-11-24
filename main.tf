@@ -9,7 +9,7 @@ terraform {
     bucket = "17f1c934-1551-98df-62ba-0b73a6b707cd-backend"
     key    = "terraform.tfstate"
     region = "us-east-1"
- }
+  }
 }
 
 
@@ -49,7 +49,7 @@ module "network" {
 module "instances" {
   source        = "git@github.com:dbgoytia/instances-tf.git"
   instance-type = "t2.micro"
-  ssh-key-arn = "arn:aws:secretsmanager:us-east-1:779136181681:secret:dgoytia-ssh-key-2-6JJZH2"
+  ssh-key-arn   = "arn:aws:secretsmanager:us-east-1:779136181681:secret:dgoytia-ssh-key-2-6JJZH2"
   key_pair_name = "dgoytia"
   servers-count = 1
   vpc_id        = module.network.VPC_ID
