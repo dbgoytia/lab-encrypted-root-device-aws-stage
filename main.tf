@@ -53,12 +53,7 @@ module "instances" {
   key_pair_name = "dgoytia"
   servers-count = 1
 
-  bootstrapped_data = <<EOF
-"c#! /bin/bash
-echo test >> test.txt
-sudo yum update -y
-sudo amazon-linux-extras install epel -y"
-EOF
+  bootstrapped_data = "#! /bin/bash; echo test >> test.txt; sudo yum update -y; sudo amazon-linux-extras install epel -y;"
 
   vpc_id        = module.network.VPC_ID
   subnet_id     = module.network.SUBNET_ID
