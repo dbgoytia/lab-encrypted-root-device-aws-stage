@@ -9,7 +9,6 @@ workflows:
       - terraform/fmt:
           checkout: true
           context: terraform
-          persist-workspace:
       - terraform/validate:
           checkout: true
           context: terraform
