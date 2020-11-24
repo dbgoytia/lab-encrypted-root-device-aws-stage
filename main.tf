@@ -57,3 +57,4 @@ module "instances" {
   vpc_id        = module.network.VPC_ID
   subnet_id     = module.network.SUBNET_ID
 }
+
