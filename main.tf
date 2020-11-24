@@ -45,6 +45,11 @@ module "network" {
   cidr_block_subnet = "10.0.1.0/24"
 }
 
+data "aws_s3_bucket_object" "bootstrap_script" {
+  bucket = "bootstrap-scripts-ssa"
+  key    = "ipref.sh"
+}
+
 # Deploy the instance with encypted root device
 module "instances" {
   source        = "git@github.com:dbgoytia/instances-tf.git"
@@ -53,7 +58,7 @@ module "instances" {
   key_pair_name = "dgoytia"
   servers-count = 1
 
-  bootstrapped_data = "#! /bin/bash; echo test >> test.txt; sudo yum update -y; sudo amazon-linux-extras install epel -y;"
+  bootstrapped_data = data.aws_s3_bucket_object.bootstrap_script.body
 
   vpc_id        = module.network.VPC_ID
   subnet_id     = module.network.SUBNET_ID
