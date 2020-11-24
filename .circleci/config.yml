@@ -10,5 +10,3 @@ workflows:
           checkout: true
           context: terraform
           persist-workspace: true
-          requires:
-            - terraform/validate
