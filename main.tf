@@ -47,14 +47,14 @@ module "network" {
 
 # Deploy the instance with encypted root device
 module "instances" {
-  source        = "git@github.com:dbgoytia/instances-tf.git"
-  instance-type = "t2.micro"
-  ssh-key-arn   = "arn:aws:secretsmanager:us-east-1:779136181681:secret:dgoytia-ssh-key-2-6JJZH2"
-  key_pair_name = "dgoytia"
-  servers-count = 1
+  source                   = "git@github.com:dbgoytia/instances-tf.git"
+  instance-type            = "t2.micro"
+  ssh-key-arn              = "arn:aws:secretsmanager:us-east-1:779136181681:secret:dgoytia-ssh-key-2-6JJZH2"
+  key_pair_name            = "dgoytia"
+  servers-count            = 1
   bootstrap_scripts_bucket = "bootstrap-scripts-ssa"
-  key = "iperf.sh"
-  vpc_id        = module.network.VPC_ID
-  subnet_id     = module.network.SUBNET_ID
+  bootstrap_script_key     = "iperf.sh"
+  vpc_id                   = module.network.VPC_ID
+  subnet_id                = module.network.SUBNET_ID
 }
 
