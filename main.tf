@@ -45,11 +45,6 @@ module "network" {
   cidr_block_subnet = "10.0.1.0/24"
 }
 
-data "aws_s3_bucket_object" "bootstrap_script" {
-  bucket = "bootstrap-scripts-ssa"
-  key    = "ipref.sh"
-}
-
 # Deploy the instance with encypted root device
 module "instances" {
   source        = "git@github.com:dbgoytia/instances-tf.git"
@@ -57,9 +52,8 @@ module "instances" {
   ssh-key-arn   = "arn:aws:secretsmanager:us-east-1:779136181681:secret:dgoytia-ssh-key-2-6JJZH2"
   key_pair_name = "dgoytia"
   servers-count = 1
-
-  bootstrapped_data = data.aws_s3_bucket_object.bootstrap_script.body
-
+  bootstrap_scripts_bucket = "bootstrap-scripts-ssa"
+  key = "iperf.sh"
   vpc_id        = module.network.VPC_ID
   subnet_id     = module.network.SUBNET_ID
 }
