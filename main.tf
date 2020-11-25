@@ -53,7 +53,7 @@ module "instances" {
   key_pair_name            = "dgoytia"
   servers-count            = 1
   bootstrap_scripts_bucket = "bootstrap-scripts-ssa"
-  bootstrap_script_key     = "/iperf.sh"
+  bootstrap_script_key     = "networking-performance-benchmarking/ipref.sh"
   vpc_id                   = module.network.VPC_ID
   subnet_id                = module.network.SUBNET_ID
 }
